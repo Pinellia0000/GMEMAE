@@ -35,14 +35,13 @@ cas(me)^2:
   macro_right_max_dis: 94  # 宏表情右侧最大帧数
 
   # 路径设置
-  project_root: "/kaggle/working/ME-GCN-Project"
+  project_root: "/kaggle/working/GMEMAE"
   feature_root: ~
   # 源项目特征
   segment_feat_root: "/kaggle/input/features/features/cas(me)^2/feature_segment"
   model_save_root: ~
   output_dir_name: ~
-  anno_csv: "/kaggle/working/ME-GCN-Project/info_csv/cas(me)_new.csv"
-  params_csv: ~
+  anno_csv: "/kaggle/working/GMEMAE/info_csv/cas(me)_new.csv"
 
   # 训练配置
   num_workers: 2  # dataloader 使用的工作线程数

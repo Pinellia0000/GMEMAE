@@ -195,7 +195,7 @@ class LOSO_DATASET(data.Dataset):
 
 if __name__ == "__main__":
     dataset = "cas(me)^2"
-    with open("/kaggle/working/ME-GCN-Project/config.yaml", encoding="UTF-8") as f:
+    with open("/kaggle/working/GMEMAE/config.yaml", encoding="UTF-8") as f:
         opt = yaml.safe_load(f)[dataset]
     subject_list = opt['subject_list']
     set_seed(seed=42)

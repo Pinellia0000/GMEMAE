@@ -29,9 +29,9 @@ for i in ${SUB_LIST[@]}
 do     
     echo "************ Currently running subject: ${i} ************"$'\n'
     # comment the line below if evaluating on available ckpts.
-    python /kaggle/working/ME-GCN-Project/train.py --dataset $DATASET --output $OUTPUT --subject ${i}  # for training
-    python /kaggle/working/ME-GCN-Project/eval.py --dataset $DATASET --output $OUTPUT --subject ${i}   # for evaluation
+    python /kaggle/working/GMEMAE/train.py --dataset $DATASET --output $OUTPUT --subject ${i}  # for training
+    python /kaggle/working/GMEMAE/eval.py --dataset $DATASET --output $OUTPUT --subject ${i}   # for evaluation
 done
 
 #output final metrics
-python /kaggle/working/ME-GCN-Project/calc_final_score.py --output $OUTPUT
+python /kaggle/working/GMEMAE/calc_final_score.py --output $OUTPUT

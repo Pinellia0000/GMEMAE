@@ -250,7 +250,7 @@ if __name__ == '__main__':
         os.makedirs(args.output)
 
     # load config & params.
-    with open("/kaggle/working/ME-GCN-Project/config.yaml", encoding="UTF-8") as f:
+    with open("/kaggle/working/GMEMAE/config.yaml", encoding="UTF-8") as f:
         yaml_config = yaml.safe_load(f)
         if args.dataset is not None:
             dataset = args.dataset
