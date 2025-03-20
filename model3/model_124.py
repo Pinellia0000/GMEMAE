@@ -260,7 +260,7 @@ class AUwGCNWithMultiHeadGATAndTCN(torch.nn.Module):
     def __init__(self, opt):
         super().__init__()
 
-        mat_dir = '/kaggle/working/ME-GCN-Project'
+        mat_dir = '/kaggle/working/GMEMAE'
         self.mat_path = os.path.join(mat_dir, 'assets', '{}.npy'.format(opt['dataset']))
 
         # 使用修改后的 GCNWithMultiHeadGATAndTCN
