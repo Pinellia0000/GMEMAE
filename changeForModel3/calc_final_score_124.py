@@ -44,6 +44,9 @@ if __name__ == '__main__':
     # # 调试
     # print("params_metrics")
     # print(params_list)
+    inference_time_list = glob.glob(
+        os.path.join(args.output, '*/inference_time.csv')
+    )
 
     df_list = []
     for res_file in res_list:
@@ -56,6 +59,12 @@ if __name__ == '__main__':
         df = pd.read_csv(params_file)
         df_params_list.append(df)
 
+    # 推理时间的计算
+    df_inference_list = []
+    for inference_file in inference_time_list:
+        df = pd.read_csv(inference_file)
+        df_inference_list.append(df)
+
     full_df = pd.concat(df_list, ignore_index=True)
     full_df = list(full_df.sum(axis=0).values)
 
@@ -66,6 +75,8 @@ if __name__ == '__main__':
     full_params_df = pd.concat(df_params_list, ignore_index=True)
     # full_params_df = list(full_params_df.sum(axis=0).values)
 
+    full_inference_time_df = pd.concat(df_inference_list, ignore_index=True)
+
     micro_tp, micro_n, micro_m, macro_tp, \
         macro_n, macro_m, all_tp, all_n, all_m = full_df
 
@@ -74,6 +85,8 @@ if __name__ == '__main__':
     all_FLOPs = full_params_df['FLOPs'].sum()  # 累加 FLOPs
     fix_Params = full_params_df['Params'].iloc[0]  # 只取第一个 Params
     # all_FLOPs, all_Params = full_params_df
+
+    all_inference_time = full_inference_time_df['inference_time'].sum() # 累加推理时间
 
     print(f'Micro result: TP:{micro_tp}, FP:{micro_n - micro_tp}, FN:{micro_m - micro_tp}')
     mic_rec, mic_pr, mic_f1 = _cal_metrics(micro_tp, micro_n, micro_m)
@@ -86,3 +99,5 @@ if __name__ == '__main__':
 
     print(f'Total FLOPs (GFLOPs): {all_FLOPs}')
     print(f'Total Params (M): {fix_Params}')
+
+    print(f'Total Inference Time(s): {all_inference_time}')
