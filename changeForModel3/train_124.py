@@ -215,6 +215,13 @@ def train(opt, data_loader, model, optimizer, epoch, device, writer):
              'state_dict': {k: v for k, v in model.state_dict().items() if
                             not k.endswith(('total_ops', 'total_params'))}}
 
+    # 计算模型的参数量
+    total_params = 0
+    for param_tensor in state['state_dict']:
+        total_params += state['state_dict'][param_tensor].numel()  # numel() 返回参数的总数
+
+    print(f"Total number of parameters in the model: {total_params}")
+
     ckpt_dir = opt["model_save_root"]
 
     if not os.path.exists(ckpt_dir):
