@@ -102,7 +102,7 @@ def train(opt, data_loader, model, optimizer, epoch, device, writer):
         # 追加到 CSV
         with open(params_csv, 'w', newline='') as file:
             writer_csv = csv.writer(file)
-            writer_csv.writerow(["FLOPs (G)", "Params (M)"])  # 添加表头
+            writer_csv.writerow(["FLOPs", "Params"])  # 添加表头
             writer_csv.writerow([flops / 1e9, params / 1e6])  # 保存 FLOPs 和参数量
         # 调试
         # 读取并打印文件内容

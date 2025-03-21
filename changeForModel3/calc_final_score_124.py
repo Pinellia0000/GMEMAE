@@ -64,12 +64,16 @@ if __name__ == '__main__':
     # # 调试
     # print(df_params_list)  # 检查是否为空
     full_params_df = pd.concat(df_params_list, ignore_index=True)
-    full_params_df = list(full_params_df.sum(axis=0).values)
+    # full_params_df = list(full_params_df.sum(axis=0).values)
 
     micro_tp, micro_n, micro_m, macro_tp, \
         macro_n, macro_m, all_tp, all_n, all_m = full_df
 
-    all_FLOPs, all_Params = full_params_df
+    # 仅对 FLOPs 求和，Params 只取第一个值
+    # 表头 writer_csv.writerow(["FLOPs (G)", "Params (M)"])  # 添加表头
+    all_FLOPs = full_params_df['FLOPs'].sum()  # 累加 FLOPs
+    fix_Params = full_params_df['Params'].iloc[0]  # 只取第一个 Params
+    # all_FLOPs, all_Params = full_params_df
 
     print(f'Micro result: TP:{micro_tp}, FP:{micro_n - micro_tp}, FN:{micro_m - micro_tp}')
     mic_rec, mic_pr, mic_f1 = _cal_metrics(micro_tp, micro_n, micro_m)
@@ -81,4 +85,4 @@ if __name__ == '__main__':
     all_rec, all_pr, all_f1 = _cal_metrics(all_tp, all_n, all_m)
 
     print(f'Total FLOPs (GFLOPs): {all_FLOPs}')
-    print(f'Total Params (M): {all_Params}')
+    print(f'Total Params (M): {fix_Params}')
