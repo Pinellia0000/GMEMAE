@@ -16,12 +16,12 @@ export CUDA_VISIBLE_DEVICES=0
 #####
 # for SAMM
 
-#SUB_LIST=( samm_007 samm_006 samm_008 samm_009 samm_010 samm_011 samm_012 samm_013 samm_014 \
-#samm_015 samm_016 samm_017 samm_018 samm_019 samm_020 samm_021 samm_022 samm_023 samm_024 \
-#samm_025 samm_026 samm_028 samm_030 samm_031 samm_032 samm_033 samm_034 samm_036 samm_035 \
-#samm_037 )
-# 调试
-SUB_LIST=( samm_007 samm_006 samm_008 )
+SUB_LIST=( samm_007 samm_006 samm_008 samm_009 samm_010 samm_011 samm_012 samm_013 samm_014 \
+samm_015 samm_016 samm_017 samm_018 samm_019 samm_020 samm_021 samm_022 samm_023 samm_024 \
+samm_025 samm_026 samm_028 samm_030 samm_031 samm_032 samm_033 samm_034 samm_036 samm_035 \
+samm_037 )
+## 调试
+#SUB_LIST=( samm_007 samm_006 samm_008 )
 OUTPUT="/kaggle/working/output/samm"
 DATASET="samm"
 

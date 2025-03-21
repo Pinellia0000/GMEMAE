@@ -9,22 +9,34 @@ import numpy as np
 """
 计算参数量
 
-去掉dropedge
+去掉ResidualWeight
 
-去掉ResidualWeight 改为普通连接
+drop_prob=0.4
+min_drop_prob=0.05
 
 """
 
 
 def drop_edge(adj, drop_prob=0.4, epoch=0, max_epochs=100, min_drop_prob=0.05):
+    """动态调整 DropEdge 概率
+
+    参数:
+        adj (Tensor): 邻接矩阵
+        drop_prob (float): 初始丢弃概率
+        epoch (int): 当前训练轮次
+        max_epochs (int): 最大训练轮次
+        min_prob (float): 最小丢弃概率，避免概率下降过低
     """
-    直接返回
-    """
-    return adj
+    # 动态计算丢弃概率
+    dynamic_prob = drop_prob * (1 - epoch / max_epochs)
+    dynamic_prob = max(dynamic_prob, min_drop_prob)  # 确保最小值不会低于 min_prob
+    # print(f"Epoch {epoch}, DropEdge probability: {dynamic_prob:.4f}")  # 打印当前动态概率
+    mask = torch.rand_like(adj, dtype=torch.float32) > dynamic_prob
+    return adj * mask
 
 
 class ResidualWeight(nn.Module):
-    """普通连接"""
+    """直接连接"""
 
     def __init__(self, initial_alpha=0.5):
         super(ResidualWeight, self).__init__()
