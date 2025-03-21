@@ -202,13 +202,13 @@ def eval_single_epoch(opt, model, dataloader, epoch, device):
             writer_csv = csv.writer(file)
             writer_csv.writerow(["epochs", "inference_time"])  # 添加表头
             writer_csv.writerow([epoch + 1, total_inference_time])  # 保存轮次和推理时间
-    # 调试
-    # 读取并打印文件内容
-    print(f"CSV 文件路径: {os.path.abspath(inference_time_csv)}")  # 获取文件的绝对路径
-    with open(inference_time_csv, 'r') as file:
-        content = file.read()
-        print("CSV 文件内容:")
-        print(content)
+    # # 调试
+    # # 读取并打印文件内容
+    # print(f"CSV 文件路径: {os.path.abspath(inference_time_csv)}")  # 获取文件的绝对路径
+    # with open(inference_time_csv, 'r') as file:
+    #     content = file.read()
+    #     print("CSV 文件内容:")
+    #     print(content)
 
 
 def nms_single_epoch(opt, epoch):

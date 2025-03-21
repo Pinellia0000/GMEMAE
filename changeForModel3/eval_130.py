@@ -84,6 +84,7 @@ if __name__ == '__main__':
                 # 在未来版本中，weights_only 参数将默认为 True，这意味着只加载模型权重，不加载潜在的其他对象
                 checkpoint = torch.load(weight_file,
                                         map_location=torch.device("cpu"), weights_only=True)
+                # 这里可能可以用于计算参数量
                 model.load_state_dict(checkpoint['state_dict'])
                 eval_single_epoch(opt, model, dataloader, epoch, device)
 
