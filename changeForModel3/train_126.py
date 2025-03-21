@@ -50,6 +50,9 @@ class AverageMeter(object):
 def train(opt, data_loader, model, optimizer, epoch, device, writer):
     # 训练模式
     model.train()
+    # 计算参数量
+    total_params = sum(p.numel() for p in model.parameters())
+    print(f"模型总参数量: {total_params}")
     # 损失率积累器
     loss_am = AverageMeter()
 
