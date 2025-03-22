@@ -49,8 +49,6 @@ def train(opt, data_loader, model, optimizer, epoch, device, writer):
     # 训练模式
     model.train()
     # 计算参数量
-    total_params = sum(p.numel() for p in model.parameters())
-    print(f"模型总参数量: {total_params}")
     # 损失率积累器
     loss_am = AverageMeter()
 
@@ -82,9 +80,9 @@ def train(opt, data_loader, model, optimizer, epoch, device, writer):
                     ) in enumerate(data_loader):
         # forward pass
         b, t, n, c = feature.shape
-        # 测试
-        # 输出
-        print(f"(b, t, n, c): ({b, t, n, c})")
+        # # 测试
+        # # 输出
+        # print(f"(b, t, n, c): ({b, t, n, c})")
         feature = feature.to(device)
 
         micro_apex_score = micro_apex_score.to(device)

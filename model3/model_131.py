@@ -333,7 +333,8 @@ if __name__ == "__main__":
         opt = yaml_config[dataset]
 
     # 在train里面输出 (b, t, n, c)
-    x = torch.randn((16, 64, 12, 2))  # (b, t, n, c)
+    # (b, t, n, c): ((128, 270, 12, 2))
+    x = torch.randn((128, 270, 12, 2))  # (b, t, n, c)
     # model = PEM(opt)
     model = AUwGCNWithMultiHeadGATAndTCN(opt)
     # 计算FLOPs和参数量
