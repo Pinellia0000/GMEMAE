@@ -326,7 +326,7 @@ if __name__ == "__main__":
     import yaml
 
     # 服务器运行
-    yaml_path = "/kaggle/working/GMEMAE/other/config.yaml"
+    yaml_path = "/kaggle/working/GMEMAE/config.yaml"
     with open(yaml_path, encoding="UTF-8") as f:
         yaml_config = yaml.safe_load(f)
         dataset = yaml_config['dataset']
