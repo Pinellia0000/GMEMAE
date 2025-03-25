@@ -347,7 +347,8 @@ if __name__ == "__main__":
     inference_time = end_time - start_time
     fps = 1 / inference_time
     # 输出结果
-    print("FLOPs:", flops)
-    print("Params:", params)
-    print("Inference Time:", inference_time)
+    print("FLOPs(GFLOPs):", flops / 1e9)
+    print("Params(k):", params / 1e3)
+    print("Inference Time(s):", inference_time)
     print("FPS:", fps)
+
