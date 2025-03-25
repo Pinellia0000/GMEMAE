@@ -321,7 +321,6 @@ class AUwGCNWithMultiHeadGATAndTCN(torch.nn.Module):
             elif isinstance(m, nn.Parameter):
                 m.data.uniform_(-0.1, 0.1)
 
-
 if __name__ == "__main__":
     import yaml
 

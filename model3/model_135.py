@@ -11,6 +11,8 @@ from thop import profile
 """
 计算参数量
 
+去掉ResidualWeight
+
 drop_prob=0.4
 min_drop_prob=0.05
 
@@ -36,20 +38,13 @@ def drop_edge(adj, drop_prob=0.4, epoch=0, max_epochs=100, min_drop_prob=0.05):
 
 
 class ResidualWeight(nn.Module):
-    """残差优化模块"""
-    """
-    没有残差块的网络仍然可以通过 ResidualWeight 来优化残差连接
-    """
+    """直接连接"""
 
     def __init__(self, initial_alpha=0.5):
         super(ResidualWeight, self).__init__()
-        # 初始化比例参数为 0.5，并约束其范围为 [0, 1]
-        self.alpha = nn.Parameter(torch.tensor(initial_alpha))  # 初始值为 0.5
 
     def forward(self, input, residual):
-        # 在每次前向传播时，确保 alpha 的值在 [0, 1] 范围内
-        alpha = torch.clamp(self.alpha, 0.0, 1.0)
-        return alpha * input + (1 - alpha) * residual
+        return input + residual
 
 
 class GraphConvolution(nn.Module):
@@ -320,7 +315,6 @@ class AUwGCNWithMultiHeadGATAndTCN(torch.nn.Module):
                 torch.nn.init.xavier_normal_(m.weight)
             elif isinstance(m, nn.Parameter):
                 m.data.uniform_(-0.1, 0.1)
-
 
 if __name__ == "__main__":
     import yaml
